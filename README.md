@@ -1,5 +1,7 @@
 # Revision Lens — 승인원 비교·검수 앱
 
+[![CI](https://github.com/greeme99/Approval-Sheet/actions/workflows/ci.yml/badge.svg)](https://github.com/greeme99/Approval-Sheet/actions/workflows/ci.yml)
+
 두 디지털 PDF 승인원의 식별정보·사양·페이지 시각 변경을 비교하고, 로컬 규칙으로 오류·누락·표기 불일치 수정 가이드를 제공하는 Windows용 로컬 앱입니다.
 
 ## 주요 기능
