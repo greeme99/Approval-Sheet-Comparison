@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revision Lens 와이어프레임</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:"Segoe UI",sans-serif;background:#f4f4f4;color:#222}
+    header,main{max-width:1366px;margin:auto} header{padding:24px 32px 16px;border-bottom:3px solid #222;background:#fff;display:flex;justify-content:space-between;align-items:end}
+    h1{margin:0;font-size:28px} p{margin:6px 0 0;color:#666}.step{font:700 12px Consolas;border:1px solid #333;padding:7px}
+    main{background:#fff;min-height:900px;padding:24px 32px}.uploads,.metrics,.filters,.pages{display:grid;gap:12px}.uploads{grid-template-columns:1fr 1fr auto}.drop{border:2px dashed #999;padding:18px}.drop b{display:block}.drop span{font-size:13px;color:#666}
+    button,select,input{font:inherit;border:1px solid #555;background:#fff;padding:10px}button{font-weight:700;cursor:pointer}.primary{background:#222;color:#fff;align-self:stretch}
+    .metrics{grid-template-columns:repeat(4,1fr);margin:22px 0}.metric{border:1px solid #aaa;padding:14px}.metric small{display:block;color:#666}.metric strong{font:700 24px Consolas}
+    nav{display:flex;border-bottom:1px solid #777;margin-bottom:16px}nav button{border:0;border-bottom:3px solid transparent}.active{border-bottom-color:#222!important}
+    .panel{display:none}.panel.active-panel{display:block}.filters{grid-template-columns:repeat(3,1fr);margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #aaa;padding:9px;text-align:left;vertical-align:top}th{background:#eee}.pages{grid-template-columns:1fr 1fr}.page{aspect-ratio:210/297;border:1px solid #777;background:repeating-linear-gradient(#fafafa,#fafafa 24px,#ddd 25px);padding:22px}.callout{border-left:4px solid #555;background:#eee;padding:12px;margin:10px 0}
+    @media(max-width:800px){.uploads,.metrics,.filters,.pages{grid-template-columns:1fr}header{align-items:start}.step{display:none}}
+  </style>
+</head>
+<body>
+<header><div><h1>승인원 비교·검수</h1><p>클릭형 화면 설계 · 기능과 정보 배치 확인용</p></div><div class="step">WIREFRAME / 04</div></header>
+<main>
+  <section class="uploads"><div class="drop"><b>OLD · 기준 승인원</b><span>IEC1000-07N.pdf · 9 pages</span></div><div class="drop"><b>NEW · 개정 승인원</b><span>IEC1000-07NB1.pdf · 9 pages</span></div><button class="primary" onclick="alert('분석 흐름 시작')">두 승인원 분석</button></section>
+  <section class="metrics"><div class="metric"><small>전체 검토 항목</small><strong>11</strong></div><div class="metric"><small>사양·식별 변경</small><strong>4</strong></div><div class="metric"><small>문서 품질 문제</small><strong>4</strong></div><div class="metric"><small>시각 변경 페이지</small><strong>3</strong></div></section>
+  <nav><button class="active" data-panel="summary">변경 요약</button><button data-panel="page">페이지 근거</button><button data-panel="issues">문제 검토</button><button data-panel="report">보고서</button></nav>
+  <section id="summary" class="panel active-panel"><div class="filters"><select id="type"><option value="">변경 유형 전체</option><option>수정</option><option>시각 변경</option><option>검토 필요</option></select><select id="severity"><option value="">심각도 전체</option><option>경고</option><option>주의</option><option>정보</option></select><select><option>검토 상태 전체</option><option>보류</option><option>승인</option><option>반려</option></select></div>
+    <table><thead><tr><th>구분</th><th>페이지</th><th>항목</th><th>기존값</th><th>변경값</th><th>판정</th><th>수정 가이드</th><th>검토</th></tr></thead><tbody id="rows">
+      <tr data-type="수정" data-severity="정보"><td>식별정보</td><td>1</td><td>모델번호</td><td>IEC1000-07N</td><td>IEC1000-07NB1</td><td>수정</td><td>표지와 사양표를 함께 확인</td><td><select><option>보류</option><option>승인</option><option>반려</option></select></td></tr>
+      <tr data-type="수정" data-severity="정보"><td>사양</td><td>6</td><td>제품무게</td><td>540g</td><td>630g</td><td>수정</td><td>도면·포장 사양 동시 반영 확인</td><td><select><option>보류</option><option>승인</option><option>반려</option></select></td></tr>
+      <tr data-type="검토 필요" data-severity="경고"><td>문서 검수</td><td>7</td><td>SQL Moblie</td><td>-</td><td>SQL Moblie</td><td>오타</td><td>SQL Mobile로 수정</td><td><select><option>보류</option><option>승인</option><option>반려</option></select></td></tr>
+    </tbody></table>
+  </section>
+  <section id="page" class="panel"><div class="filters"><select><option>3페이지</option><option>4페이지</option><option>5페이지</option><option>6페이지</option></select><div class="callout">판정: 시각 변경 · 픽셀 차이율 41.1%</div></div><div class="pages"><div class="page"><b>OLD · 기준본</b><p>원문 PDF 페이지 미리보기 영역</p></div><div class="page"><b>NEW · 개정본</b><p>원문 PDF 페이지 미리보기 영역</p></div></div></section>
+  <section id="issues" class="panel"><div class="callout"><b>경고 · IIC / I2C 표기 불일치</b><p>동일 통신 규격이라면 I2C로 통일하고 하드웨어 사양과 핀 정의를 함께 확인합니다.</p></div><div class="callout"><b>주의 · 다른 모델 참조</b><p>인증 기준모델 등 의도된 참조인지 확인한 뒤 유지 또는 수정합니다.</p></div></section>
+  <section id="report" class="panel"><div class="metrics"><div class="metric"><small>승인</small><strong>0</strong></div><div class="metric"><small>반려</small><strong>0</strong></div><div class="metric"><small>보류</small><strong>11</strong></div></div><div class="callout">보류 항목이 포함된 중간 보고서입니다.</div><button>Excel 보고서 다운로드</button> <button>PDF 보고서 다운로드</button></section>
+</main>
+<script>
+  document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));b.classList.add('active');document.getElementById(b.dataset.panel).classList.add('active-panel')});
+  function filter(){const t=document.getElementById('type').value,s=document.getElementById('severity').value;document.querySelectorAll('#rows tr').forEach(r=>r.style.display=(!t||r.dataset.type===t)&&(!s||r.dataset.severity===s)?'':'none')}
+  document.getElementById('type').onchange=filter;document.getElementById('severity').onchange=filter;
+</script>
+</body></html>
