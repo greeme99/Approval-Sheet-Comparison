@@ -1,0 +1,5 @@
+interface:
+  display_name: "7단계 제품 개발"
+  short_description: "기획부터 구현·테스트까지 추적 가능한 개발 산출물을 만듭니다"
+  default_prompt: "Use $seven-stage-product-development to plan and deliver this software project through requirements, design, implementation, and testing."
+  brand_color: "#0B5CAD"
